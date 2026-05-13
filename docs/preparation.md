@@ -4,6 +4,8 @@
 
 GymFox est un site web de commerce en ligne spécialisé dans la vente d'accessoires de gym et de musculation. Le projet cible les athlètes et amateurs de fitness qui cherchent des accessoires de qualité premium : sangles, ceintures, gants, bandes de résistance, genouillères, et plus encore.
 
+Membre : zach belley
+
 Le site permettra aux utilisateurs de :
 
 - Parcourir les produits par catégorie
