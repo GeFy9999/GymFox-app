@@ -1,0 +1,6 @@
+[
+  { "label": "Accueil", "href": "/" },
+  { "label": "Produits", "href": "/produits" },
+  { "label": "À propos", "href": "/a-propos" },
+  { "label": "Contact", "href": "/contact" }
+]
