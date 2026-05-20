@@ -2,6 +2,8 @@ import ProductCard from "@/components/common/ProductCard";
 import products from "@/utils/products.json";
 
 export default function FeaturedProducts() {
+  const featuredProducts = products.filter((product) => product.featured);
+
   return (
     <section className="py-16 px-4 bg-slate-50">
       <div className="mx-auto max-w-6xl">
@@ -9,7 +11,7 @@ export default function FeaturedProducts() {
           Produits populaires
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {products.map((product) => (
+          {featuredProducts.map((product) => (
             <ProductCard
               key={product.name}
               name={product.name}
