@@ -1,10 +1,20 @@
 import Link from "next/link";
 import navItems from "@/utils/navItems.json";
 
-export default function Navbar() {
+type NavbarProps = {
+  mobile?: boolean;
+};
+
+export default function Navbar({ mobile = false }: NavbarProps) {
   return (
     <nav aria-label="Navigation principale">
-      <ul className="flex items-center gap-6 text-sm font-medium text-slate-700">
+      <ul
+        className={
+          mobile
+            ? "flex flex-col gap-4 text-sm font-medium text-slate-700"
+            : "flex items-center gap-6 text-sm font-medium text-slate-700"
+        }
+      >
         {navItems.map((item) => (
           <li key={item.href}>
             <Link
