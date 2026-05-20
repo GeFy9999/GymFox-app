@@ -1,10 +1,5 @@
 import ProductCard from "@/components/common/ProductCard";
-
-const products = [
-  { name: "Sangle Pro", price: "34,99 $" },
-  { name: "Ceinture Elite", price: "59,99 $" },
-  { name: "Gants Grip", price: "29,99 $" },
-];
+import products from "@/utils/products.json";
 
 export default function FeaturedProducts() {
   return (
@@ -19,6 +14,7 @@ export default function FeaturedProducts() {
               key={product.name}
               name={product.name}
               price={product.price}
+              image={product.image}
             />
           ))}
         </div>

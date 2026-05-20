@@ -1,0 +1,10 @@
+[
+  { "name": "Sangles", "price": "34,99 $", "image": "/straps.webp" },
+  {
+    "name": "Ceinture de force",
+    "price": "59,99 $",
+    "image": "/weightlifting.webp"
+  },
+  { "name": "Gants Grip", "price": "29,99 $", "image": "/glove.webp" },
+  { "name": "Bandes de résistance", "price": "29,99 $", "image": "/bands.webp" }
+]
