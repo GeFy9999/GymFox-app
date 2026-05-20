@@ -1,10 +1,26 @@
 [
-  { "name": "Sangles", "price": "34,99 $", "image": "/straps.webp" },
+  {
+    "name": "Sangles",
+    "price": "34,99 $",
+    "image": "/straps.webp",
+    "featured": true
+  },
   {
     "name": "Ceinture de force",
     "price": "59,99 $",
-    "image": "/weightlifting.webp"
+    "image": "/weightlifting.webp",
+    "featured": true
   },
-  { "name": "Gants Grip", "price": "29,99 $", "image": "/glove.webp" },
-  { "name": "Bandes de résistance", "price": "29,99 $", "image": "/bands.webp" }
+  {
+    "name": "Gants Grip",
+    "price": "29,99 $",
+    "image": "/glove.webp",
+    "featured": true
+  },
+  {
+    "name": "Bandes de résistance",
+    "price": "29,99 $",
+    "image": "/bands.webp",
+    "featured": true
+  }
 ]
