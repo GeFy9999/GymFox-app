@@ -5,17 +5,33 @@ import Navbar from "./Navbar";
 import Button from "@/components/common/Button";
 import { useState } from "react";
 
-export default function Header() {
+export type PageId = "accueil" | "produits" | "a-propos" | "contact";
+
+type HeaderProps = {
+  setPage: (page: PageId) => void;
+};
+
+export default function Header({ setPage }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleNavigate = (page: PageId) => {
+    setPage(page);
+    setIsOpen(false); // ferme le menu mobile après un clic
+  };
 
   return (
     <header className="border-b border-slate-200 bg-white">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <Logo />
+        <div
+          onClick={() => handleNavigate("accueil")}
+          className="cursor-pointer"
+        >
+          <Logo />
+        </div>
 
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-6">
-          <Navbar />
+          <Navbar setPage={handleNavigate} />
           <Button>Panier (0)</Button>
         </div>
 
@@ -40,7 +56,7 @@ export default function Header() {
       {/* Menu mobile */}
       {isOpen && (
         <div className="md:hidden border-t border-slate-200 px-4 py-4 flex flex-col gap-4">
-          <Navbar mobile />
+          <Navbar setPage={handleNavigate} mobile />
           <Button>Panier (0)</Button>
         </div>
       )}

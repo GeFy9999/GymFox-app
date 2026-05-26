@@ -1,11 +1,18 @@
-import Link from "next/link";
-import navItems from "@/utils/navItems.json";
+import { PageId } from "./index";
 
 type NavbarProps = {
   mobile?: boolean;
+  setPage: (page: PageId) => void;
 };
 
-export default function Navbar({ mobile = false }: NavbarProps) {
+const liens: { id: PageId; label: string }[] = [
+  { id: "accueil", label: "Accueil" },
+  { id: "produits", label: "Produits" },
+  { id: "a-propos", label: "À propos" },
+  { id: "contact", label: "Contact" },
+];
+
+export default function Navbar({ mobile = false, setPage }: NavbarProps) {
   return (
     <nav aria-label="Navigation principale">
       <ul
@@ -15,14 +22,15 @@ export default function Navbar({ mobile = false }: NavbarProps) {
             : "flex items-center gap-6 text-sm font-medium text-slate-700"
         }
       >
-        {navItems.map((item) => (
-          <li key={item.href}>
-            <Link
-              href={item.href}
+        {liens.map((lien) => (
+          <li key={lien.id}>
+            <button
+              type="button"
+              onClick={() => setPage(lien.id)}
               className="transition-colors hover:text-orange-700"
             >
-              {item.label}
-            </Link>
+              {lien.label}
+            </button>
           </li>
         ))}
       </ul>
