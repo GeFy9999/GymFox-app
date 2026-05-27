@@ -10,8 +10,9 @@ export default function Button({
   onClick,
 }: ButtonProps) {
   const styles = {
-    primary: "bg-orange-600 hover:bg-orange-700 text-white",
-    outline: "border border-white text-white hover:bg-white hover:text-black",
+    primary: "bg-orange-600 hover:bg-orange-700 text-white cursor-pointer",
+    outline:
+      "border border-white text-white hover:bg-white hover:text-black cursor-pointer",
   };
 
   return (
