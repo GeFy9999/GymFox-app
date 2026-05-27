@@ -27,7 +27,7 @@ export default function Navbar({ mobile = false, setPage }: NavbarProps) {
             <button
               type="button"
               onClick={() => setPage(lien.id)}
-              className="transition-colors hover:text-orange-700"
+              className="transition-colors hover:text-orange-700 cursor-pointer"
             >
               {lien.label}
             </button>
