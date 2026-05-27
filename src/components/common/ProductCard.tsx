@@ -15,7 +15,7 @@ export default function ProductCard({ name, price, image }: ProductCardProps) {
           alt={name}
           fill
           sizes="(max-width: 768px) 100vw, 33vw"
-          className="object-cover"
+          className="object-cover cursor-pointer"
         />
       </div>
       <div className="p-4">
