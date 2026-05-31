@@ -1,26 +1,95 @@
 [
   {
     "name": "Sangles",
-    "price": "34,99 $",
-    "image": "/straps.webp",
-    "featured": true
+    "price": 34.99,
+    "image": "/straps2.0.webp",
+    "featured": true,
+    "category": "Sangles",
+    "variants": [
+      {
+        "label": "Noir",
+        "type": "taille",
+        "price": 34.99,
+        "image": "/straps2.0.webp"
+      },
+      {
+        "label": "Blanc",
+        "type": "taille",
+        "price": 34.99,
+        "image": "/straps2-variante1copy (1).webp"
+      },
+      {
+        "label": "Bleu Marine",
+        "type": "taille",
+        "price": 36.99,
+        "image": "/straps2-variante2copy.webp"
+      }
+    ]
   },
   {
-    "name": "Ceinture de force",
-    "price": "59,99 $",
-    "image": "/weightlifting.webp",
-    "featured": true
+    "name": "Haltères",
+    "price": 14.99,
+    "image": "/dumbel5-10kg.webp",
+    "featured": true,
+    "category": "Haltères",
+    "variants": [
+      {
+        "label": "10 Kg",
+        "type": "poids",
+        "price": 14.99,
+        "image": "/dumbel5-10kg.webp"
+      },
+      {
+        "label": "15 Kg",
+        "type": "poids",
+        "price": 24.99,
+        "image": "/dumbel5-15kg.webp"
+      },
+      {
+        "label": "20 Kg",
+        "type": "poids",
+        "price": 29.99,
+        "image": "/dumbel5-20kg.webp"
+      }
+    ]
   },
   {
     "name": "Gants Grip",
-    "price": "29,99 $",
-    "image": "/glove.webp",
-    "featured": true
+    "price": 29.99,
+    "image": "/glove2.webp",
+    "category": "Gants",
+    "featured": true,
+    "variants": [
+      {
+        "label": "Noir",
+        "type": "couleur",
+        "price": 29.99,
+        "image": "/glove2.webp"
+      },
+      {
+        "label": "Blanc",
+        "type": "couleur",
+        "price": 32.99,
+        "image": "/glove2-varianteBlanche.webp"
+      },
+      {
+        "label": "Bleu Marine",
+        "type": "couleur",
+        "price": 33.99,
+        "image": "/glove2-varianteBleuMarine.webp"
+      }
+    ]
   },
   {
     "name": "Bandes de résistance",
-    "price": "29,99 $",
-    "image": "/bands.webp",
-    "featured": true
+    "price": 29.99,
+    "image": "/bands2.webp",
+    "featured": true,
+    "category": "Bandes",
+    "variants": [
+      { "label": "Légère", "type": "résistance", "price": 24.99 },
+      { "label": "Moyenne", "type": "résistance", "price": 29.99 },
+      { "label": "Forte", "type": "résistance", "price": 34.99 }
+    ]
   }
 ]

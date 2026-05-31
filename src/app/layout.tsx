@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-// import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
@@ -11,6 +10,8 @@ import ProductList from "@/components/home/ProductList";
 import APropos from "@/components/a-propos";
 import Contact from "@/components/contact";
 import Produits from "@/components/produits";
+import ProductDetail from "@/components/productDetail/productDetail";
+import products from "@/utils/products.json";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -23,11 +24,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// export const metadata: Metadata = {
-//   title: "GymFox — Accessoires de sport premium",
-//   description: "Accessoires de gym et musculation de qualité premium",
-// };
-
+export type Product = (typeof products)[0];
 export type PageId = "accueil" | "produits" | "a-propos" | "contact";
 
 export default function RootLayout({
@@ -36,6 +33,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const [page, setPage] = useState<PageId>("accueil");
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
+  const handleNavigate = (p: PageId) => {
+    setPage(p);
+    setSelectedProduct(null);
+    setSelectedCategory(null);
+  };
 
   return (
     <html
@@ -43,16 +48,27 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Header setPage={setPage} />
+        <Header setPage={handleNavigate} />
         <main className="flex-1">
-          {page === "accueil" ? (
+          {selectedProduct ? (
+            <ProductDetail
+              product={selectedProduct}
+              onClose={() => setSelectedProduct(null)}
+            />
+          ) : page === "accueil" ? (
             <>
               <Hero />
-              <Categories />
-              <ProductList />
+              <Categories
+                selectedCategory={selectedCategory}
+                onSelectCategory={setSelectedCategory}
+              />
+              <ProductList
+                onSelectProduct={setSelectedProduct}
+                selectedCategory={selectedCategory}
+              />
             </>
           ) : page === "produits" ? (
-            <Produits />
+            <Produits onSelectProduct={setSelectedProduct} />
           ) : page === "a-propos" ? (
             <APropos />
           ) : page === "contact" ? (
@@ -61,7 +77,7 @@ export default function RootLayout({
             <p className="text-center text-red-600">Page introuvable</p>
           )}
         </main>
-        <Footer />
+        <Footer setPage={handleNavigate} />
       </body>
     </html>
   );
