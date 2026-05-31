@@ -1,3 +1,5 @@
+"use client";
+
 import Button from "@/components/common/Button";
 import Image from "next/image";
 import type { PageId } from "@/app/layout";
