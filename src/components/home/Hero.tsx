@@ -1,7 +1,12 @@
 import Button from "@/components/common/Button";
 import Image from "next/image";
+import type { PageId } from "@/app/layout";
 
-export default function Hero() {
+type Props = {
+  onNavigate: (page: PageId) => void;
+};
+
+export default function Hero({ onNavigate }: Props) {
   return (
     <section className="relative text-white py-24 px-4 overflow-hidden min-h-[500px]">
       <Image
@@ -26,8 +31,12 @@ export default function Hero() {
           objectifs et repousser vos limites.
         </p>
         <div className="flex gap-4">
-          <Button>Acheter maintenant</Button>
-          <Button variant="outline">En savoir plus</Button>
+          <Button onClick={() => onNavigate("produits")}>
+            Acheter maintenant
+          </Button>
+          <Button variant="outline" onClick={() => onNavigate("a-propos")}>
+            En savoir plus
+          </Button>
         </div>
       </div>
     </section>

@@ -3,43 +3,54 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Button from "@/components/common/Button";
+import type { CartItem } from "@/app/layout";
 import products from "@/utils/products.json";
 
-export type Product = (typeof products)[0];
+type Product = (typeof products)[0];
 
 type ProductDetailProps = {
   product: Product;
   onClose: () => void;
+  onAddToCart: (item: CartItem) => void;
 };
 
 export default function ProductDetail({
   product,
   onClose,
+  onAddToCart,
 }: ProductDetailProps) {
   const [selectedVariant, setSelectedVariant] = useState(product.variants[0]);
-
-  const currentPrice = selectedVariant?.price ?? product.price;
-  const currentImage = (selectedVariant as any)?.image ?? product.image;
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
+  const currentPrice = selectedVariant?.price ?? product.price;
+  const currentImage = (selectedVariant as any)?.image ?? product.image;
+
+  const handleAddToCart = () => {
+    onAddToCart({
+      product,
+      variantLabel: selectedVariant?.label ?? "",
+      variantImage: currentImage,
+      price: currentPrice,
+      quantity: 1,
+    });
+  };
+
   return (
     <section className="min-h-screen px-4 py-12 bg-white">
       <div className="mx-auto max-w-5xl flex flex-col md:flex-row gap-10">
-        {/* Image gauche */}
         <div className="relative w-full md:w-1/2 h-[500px] bg-slate-100 rounded-xl overflow-hidden">
           <Image
             src={currentImage}
             alt={product.name}
             fill
-            className="object-cover"
+            className="object-cover object-center"
           />
         </div>
 
-        {/* Détails droite */}
-        <div className="flex-1 flex flex-col gap-6 justify-center">
+        <div className="flex-1 flex flex-col gap-6 justify-center relative">
           <button
             onClick={onClose}
             className="self-start text-sm text-slate-500 hover:text-slate-800 transition-colors cursor-pointer"
@@ -75,7 +86,7 @@ export default function ProductDetail({
             </div>
           </div>
 
-          <Button>Ajouter au panier</Button>
+          <Button onClick={handleAddToCart}>Ajouter au panier</Button>
         </div>
       </div>
     </section>
