@@ -9,14 +9,20 @@ export type PageId = "accueil" | "produits" | "a-propos" | "contact";
 
 type HeaderProps = {
   setPage: (page: PageId) => void;
+  cartCount: number;
+  onCartOpen: () => void;
 };
 
-export default function Header({ setPage }: HeaderProps) {
+export default function Header({
+  setPage,
+  cartCount,
+  onCartOpen,
+}: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleNavigate = (page: PageId) => {
     setPage(page);
-    setIsOpen(false); // ferme le menu mobile après un clic
+    setIsOpen(false);
   };
 
   return (
@@ -32,7 +38,7 @@ export default function Header({ setPage }: HeaderProps) {
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-6">
           <Navbar setPage={handleNavigate} />
-          <Button>Panier (0)</Button>
+          <Button onClick={onCartOpen}>Panier ({cartCount})</Button>
         </div>
 
         {/* Hamburger mobile */}
@@ -57,7 +63,7 @@ export default function Header({ setPage }: HeaderProps) {
       {isOpen && (
         <div className="md:hidden border-t border-slate-200 px-4 py-4 flex flex-col gap-4">
           <Navbar setPage={handleNavigate} mobile />
-          <Button>Panier (0)</Button>
+          <Button onClick={onCartOpen}>Panier ({cartCount})</Button>
         </div>
       )}
     </header>
