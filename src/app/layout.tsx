@@ -85,6 +85,22 @@ export default function RootLayout({
     );
   };
 
+  const handleUpdateQuantity = (
+    productName: string,
+    variantLabel: string,
+    delta: number,
+  ) => {
+    setCartItems((prev) =>
+      prev
+        .map((i) =>
+          i.product.name === productName && i.variantLabel === variantLabel
+            ? { ...i, quantity: i.quantity + delta }
+            : i,
+        )
+        .filter((i) => i.quantity > 0),
+    );
+  };
+
   const totalItems = cartItems.reduce((acc, i) => acc + i.quantity, 0);
 
   return (
@@ -111,6 +127,11 @@ export default function RootLayout({
               items={cartItems}
               onClose={() => setCartOpen(false)}
               onRemove={handleRemove}
+              onUpdateQuantity={handleUpdateQuantity}
+              onNavigate={() => {
+                setCartOpen(false);
+                handleNavigate("produits");
+              }}
             />
           ) : selectedProduct ? (
             <ProductDetail

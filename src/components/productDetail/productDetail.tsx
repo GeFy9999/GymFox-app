@@ -27,6 +27,7 @@ export default function ProductDetail({
 
   const currentPrice = selectedVariant?.price ?? product.price;
   const currentImage = (selectedVariant as any)?.image ?? product.image;
+  const [quantity, setQuantity] = useState(1);
 
   const handleAddToCart = () => {
     onAddToCart({
@@ -34,7 +35,7 @@ export default function ProductDetail({
       variantLabel: selectedVariant?.label ?? "",
       variantImage: currentImage,
       price: currentPrice,
-      quantity: 1,
+      quantity,
     });
   };
 
@@ -84,6 +85,24 @@ export default function ProductDetail({
                 </button>
               ))}
             </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+              className="w-8 h-8 rounded-md border border-slate-300 text-slate-700 hover:border-orange-400 transition-colors cursor-pointer"
+            >
+              −
+            </button>
+            <span className="font-medium text-slate-800 w-6 text-center">
+              {quantity}
+            </span>
+            <button
+              onClick={() => setQuantity((q) => q + 1)}
+              className="w-8 h-8 rounded-md border border-slate-300 text-slate-700 hover:border-orange-400 transition-colors cursor-pointer"
+            >
+              +
+            </button>
           </div>
 
           <Button onClick={handleAddToCart}>Ajouter au panier</Button>
