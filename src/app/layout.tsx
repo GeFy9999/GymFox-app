@@ -94,7 +94,7 @@ export default function RootLayout({
       prev
         .map((i) =>
           i.product.name === productName && i.variantLabel === variantLabel
-            ? { ...i, quantity: i.quantity + delta }
+            ? { ...i, quantity: Math.min(10, Math.max(0, i.quantity + delta)) }
             : i,
         )
         .filter((i) => i.quantity > 0),
