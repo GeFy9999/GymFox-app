@@ -99,7 +99,14 @@ export default function Cart({
                             1,
                           )
                         }
-                        className="w-7 h-7 rounded-md border border-slate-300 text-slate-700 hover:border-orange-400 transition-colors"
+                        disabled={item.quantity >= 10}
+                        className="w-7 h-7 rounded-md border border-slate-300 transition-colors"
+                        style={{
+                          borderColor: item.quantity >= 10 ? "#e2e8f0" : "",
+                          color: item.quantity >= 10 ? "#cbd5e1" : "#334155",
+                          cursor:
+                            item.quantity >= 10 ? "not-allowed" : "pointer",
+                        }}
                       >
                         +
                       </button>
