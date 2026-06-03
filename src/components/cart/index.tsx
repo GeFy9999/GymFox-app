@@ -49,7 +49,7 @@ export default function Cart({
         ) : (
           <div className="flex flex-col lg:flex-row gap-8 items-start">
             {/* Items gauche */}
-            <div className="flex flex-col gap-4 flex-1">
+            <div className="flex flex-col gap-4 flex-1 max-w-2xl mx-auto w-full">
               {items.map((item, index) => (
                 <div
                   key={index}
