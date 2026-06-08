@@ -2,8 +2,8 @@
 
 import Logo from "@/components/common/Logo";
 import Navbar from "./Navbar";
-import Button from "@/components/common/Button";
 import { useState } from "react";
+import { ShoppingCart } from "lucide-react";
 
 export type PageId = "accueil" | "produits" | "a-propos" | "contact";
 
@@ -38,7 +38,17 @@ export default function Header({
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-6">
           <Navbar setPage={handleNavigate} />
-          <Button onClick={onCartOpen}>Panier ({cartCount})</Button>
+          <button
+            onClick={onCartOpen}
+            className="relative p-2 text-slate-700 hover:text-orange-500 transition-colors"
+          >
+            <ShoppingCart size={24} />
+            {cartCount > 0 && (
+              <span className="absolute -top-1 -right-1 bg-orange-500 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                {cartCount}
+              </span>
+            )}
+          </button>
         </div>
 
         {/* Hamburger mobile */}
@@ -63,7 +73,18 @@ export default function Header({
       {isOpen && (
         <div className="md:hidden border-t border-slate-200 px-4 py-4 flex flex-col gap-4">
           <Navbar setPage={handleNavigate} mobile />
-          <Button onClick={onCartOpen}>Panier ({cartCount})</Button>
+          <button
+            onClick={onCartOpen}
+            className="relative flex items-center gap-2 text-slate-700 hover:text-orange-500 transition-colors font-medium"
+          >
+            <ShoppingCart size={20} />
+            Panier
+            {cartCount > 0 && (
+              <span className="bg-orange-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+                {cartCount}
+              </span>
+            )}
+          </button>
         </div>
       )}
     </header>

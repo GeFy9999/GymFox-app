@@ -1,9 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import products from "@/utils/products.json";
 import ProductCard from "@/components/common/ProductCard";
-import ProductDetail from "@/components/productDetail/productDetail";
 
 type Product = (typeof products)[0];
 
@@ -21,11 +19,21 @@ export default function FeaturedProducts({
   );
 
   return (
-    <section className="py-16 px-4 bg-slate-50">
+    <section className="py-16 px-6 bg-white">
       <div className="mx-auto max-w-6xl">
-        <h2 className="text-2xl font-bold text-slate-800 mb-8">
-          {selectedCategory ? selectedCategory : "Produits populaires"}
-        </h2>
+        <div className="flex items-end justify-between mb-10">
+          <div>
+            <p className="text-orange-500 text-xs font-semibold uppercase tracking-widest mb-1">
+              {selectedCategory ? "Filtré par" : "Sélection"}
+            </p>
+            <h2 className="text-3xl font-black text-slate-900">
+              {selectedCategory ? selectedCategory : "Produits populaires"}
+            </h2>
+          </div>
+          <p className="text-sm text-slate-400">
+            {filtered.length} produit{filtered.length > 1 ? "s" : ""}
+          </p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {filtered.map((product) => (
             <ProductCard

@@ -10,29 +10,30 @@ type Props = {
 
 export default function Hero({ onNavigate }: Props) {
   return (
-    <section className="relative text-white py-24 px-4 overflow-hidden min-h-[500px]">
+    <section className="relative text-white overflow-hidden min-h-[620px] flex items-center">
       <Image
         src="/GymBG.webp"
         alt="Hero background"
         fill
-        className="object-cover object-center"
+        className="object-cover object-center scale-105"
         priority
       />
-      <div className="absolute inset-0 bg-black/60" />
-      <div className="relative mx-auto max-w-6xl">
-        <p className="text-orange-500 text-sm font-medium uppercase tracking-widest mb-3">
+      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
+      <div className="relative mx-auto max-w-6xl px-6 py-32 w-full">
+        <span className="inline-block bg-orange-500/20 border border-orange-500/40 text-orange-400 text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full mb-6">
           Nouvelle collection
-        </p>
-        <h1 className="text-5xl font-bold mb-4 leading-tight">
-          Conçu pour performer
+        </span>
+        <h1 className="text-6xl font-black mb-6 leading-[1.05] max-w-2xl">
+          Conçu pour
+          <span className="text-orange-500"> performer</span>
           <br />
           fait pour durer
         </h1>
-        <p className="text-slate-400 text-lg mb-8 max-w-xl">
+        <p className="text-slate-300 text-lg mb-10 max-w-lg leading-relaxed">
           Découvrez notre collection d'accessoires premium pour atteindre vos
           objectifs et repousser vos limites.
         </p>
-        <div className="flex gap-4">
+        <div className="flex gap-4 flex-wrap">
           <Button onClick={() => onNavigate("produits")}>
             Acheter maintenant
           </Button>
