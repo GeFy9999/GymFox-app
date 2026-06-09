@@ -18,10 +18,10 @@ export default function ProductCard({
   return (
     <div
       onClick={onSelect}
-      className="group bg-slate-50 rounded-2xl border border-slate-100 overflow-hidden hover:shadow-xl hover:shadow-slate-200/60 transition-all duration-300 cursor-pointer"
+      className="group bg-slate-50 rounded-md border border-slate-100 overflow-hidden hover:shadow-xl hover:shadow-slate-200/60 transition-all duration-300 cursor-pointer"
     >
       <div className="relative h-72 bg-white overflow-hidden p-4">
-        <div className="relative h-full rounded-xl overflow-hidden">
+        <div className="relative h-full rounded-md overflow-hidden">
           <Image
             src={image}
             alt={name}

@@ -55,12 +55,12 @@ export default function Cart({
                   key={index}
                   className="bg-white rounded-xl p-4 flex gap-4 items-center shadow-sm"
                 >
-                  <div className="relative w-24 h-24 bg-slate-100 rounded-lg overflow-hidden shrink-0">
+                  <div className="relative w-24 h-24 bg-slate-100 rounded-lg overflow-hidden shrink-0 p-2">
                     <Image
                       src={item.variantImage}
                       alt={item.product.name}
                       fill
-                      className="object-contain p-2"
+                      className="object-cover rounded-md"
                     />
                   </div>
                   <div className="flex-1">
