@@ -17,6 +17,7 @@ export default function Hero({ onNavigate }: Props) {
         fill
         className="object-cover object-center scale-105"
         priority
+        fetchPriority="high"
       />
       <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
       <div className="relative mx-auto max-w-6xl px-6 py-32 w-full">

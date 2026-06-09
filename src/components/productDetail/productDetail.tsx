@@ -65,6 +65,10 @@ export default function ProductDetail({
             {currentPrice.toFixed(2)} $
           </p>
 
+          <p className="text-slate-600 text-base leading-relaxed border-t border-b border-slate-100 py-3">
+            {product.description}
+          </p>
+
           <div>
             <p className="text-sm font-medium text-slate-600 mb-2 capitalize">
               {selectedVariant?.type} :

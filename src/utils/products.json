@@ -5,6 +5,7 @@
     "image": "/straps2.0.webp",
     "featured": true,
     "category": "Sangles",
+    "description": "Optimisez votre poigne et sécurisez vos levages lourds avec nos sangles de tirage ultra-résistantes.",
     "variants": [
       {
         "label": "Noir",
@@ -32,6 +33,7 @@
     "image": "/dumbel5-10kg.webp",
     "featured": true,
     "category": "Haltères",
+    "description": "Des haltères ergonomiques et durables, parfaits pour sculpter votre corps à la maison ou en salle.",
     "variants": [
       {
         "label": "10 Kg",
@@ -59,6 +61,7 @@
     "image": "/glove2.webp",
     "category": "Gants",
     "featured": true,
+    "description": "Protégez vos mains et maximisez votre adhérence à la barre grâce à notre technologie anti-dérapante.",
     "variants": [
       {
         "label": "Noir",
@@ -83,9 +86,10 @@
   {
     "name": "Bandes de résistance",
     "price": 29.99,
-    "image": "/bands2.webp",
+    "image": "/bands3.webp",
     "featured": true,
     "category": "Bandes",
+    "description": "Polyvalentes et compactes, ces bandes sont idéales pour vos échauffements, étirements et séances de renforcement.",
     "variants": [
       { "label": "Légère", "type": "résistance", "price": 24.99 },
       { "label": "Moyenne", "type": "résistance", "price": 29.99 },
