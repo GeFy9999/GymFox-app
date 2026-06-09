@@ -18,16 +18,18 @@ export default function ProductCard({
   return (
     <div
       onClick={onSelect}
-      className="group bg-white rounded-2xl border border-slate-100 overflow-hidden hover:shadow-xl hover:shadow-slate-200/60 transition-all duration-300 cursor-pointer"
+      className="group bg-slate-50 rounded-2xl border border-slate-100 overflow-hidden hover:shadow-xl hover:shadow-slate-200/60 transition-all duration-300 cursor-pointer"
     >
-      <div className="relative h-72 bg-slate-50 overflow-hidden">
-        <Image
-          src={image}
-          alt={name}
-          fill
-          sizes="(max-width: 768px) 100vw, 33vw"
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
-        />
+      <div className="relative h-72 bg-white overflow-hidden p-4">
+        <div className="relative h-full rounded-xl overflow-hidden">
+          <Image
+            src={image}
+            alt={name}
+            fill
+            sizes="(max-width: 768px) 100vw, 33vw"
+            className="object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+        </div>
       </div>
       <div className="p-5 border-t border-slate-100">
         <p className="font-semibold text-slate-800 text-base mb-1">{name}</p>
