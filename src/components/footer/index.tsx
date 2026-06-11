@@ -1,11 +1,7 @@
 import Logo from "@/components/common/Logo";
-import { PageId } from "@/components/header";
+import Link from "next/link";
 
-type FooterProps = {
-  setPage: (page: PageId) => void;
-};
-
-export default function Footer({ setPage }: FooterProps) {
+export default function Footer() {
   return (
     <footer className="bg-slate-900 text-white mt-auto">
       <div className="mx-auto max-w-6xl px-4 py-16">
@@ -25,40 +21,36 @@ export default function Footer({ setPage }: FooterProps) {
             </p>
             <ul className="space-y-3 text-sm text-slate-400">
               <li>
-                <button
-                  type="button"
-                  onClick={() => setPage("accueil")}
+                <Link
+                  href="/"
                   className="hover:text-orange-500 transition-colors"
                 >
                   Accueil
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => setPage("produits")}
+                <Link
+                  href="/produits"
                   className="hover:text-orange-500 transition-colors"
                 >
                   Produits
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => setPage("a-propos")}
+                <Link
+                  href="/a-propos"
                   className="hover:text-orange-500 transition-colors"
                 >
                   À propos
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => setPage("contact")}
+                <Link
+                  href="/contact"
                   className="hover:text-orange-500 transition-colors"
                 >
                   Contact
-                </button>
+                </Link>
               </li>
             </ul>
           </div>

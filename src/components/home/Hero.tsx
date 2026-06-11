@@ -1,14 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import Button from "@/components/common/Button";
 import Image from "next/image";
-import type { PageId } from "@/app/layout";
 
-type Props = {
-  onNavigate: (page: PageId) => void;
-};
-
-export default function Hero({ onNavigate }: Props) {
+export default function Hero() {
   return (
     <section className="relative text-white overflow-hidden min-h-[620px] flex items-center">
       <Image
@@ -35,12 +31,12 @@ export default function Hero({ onNavigate }: Props) {
           objectifs et repousser vos limites.
         </p>
         <div className="flex gap-4 flex-wrap">
-          <Button onClick={() => onNavigate("produits")}>
-            Acheter maintenant
-          </Button>
-          <Button variant="outline" onClick={() => onNavigate("a-propos")}>
-            En savoir plus
-          </Button>
+          <Link href="/produits">
+            <Button>Acheter maintenant</Button>
+          </Link>
+          <Link href="/a-propos">
+            <Button variant="outline">En savoir plus</Button>
+          </Link>
         </div>
       </div>
     </section>

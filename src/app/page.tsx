@@ -1,13 +1,21 @@
+"use client";
+
+import { useState } from "react";
 import Hero from "@/components/home/Hero";
 import Categories from "@/components/home/Categories";
 import ProductList from "@/components/home/ProductList";
 
-export default function HomePage() {
+export default function Home() {
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
   return (
-    <main className="flex-1">
+    <>
       <Hero />
-      <Categories />
-      <ProductList />
-    </main>
+      <Categories
+        selectedCategory={selectedCategory}
+        onSelectCategory={setSelectedCategory}
+      />
+      <ProductList selectedCategory={selectedCategory} />
+    </>
   );
 }

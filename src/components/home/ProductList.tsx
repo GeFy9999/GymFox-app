@@ -1,19 +1,14 @@
 "use client";
 
+import Link from "next/link";
 import products from "@/utils/products.json";
 import ProductCard from "@/components/common/ProductCard";
 
-type Product = (typeof products)[0];
-
 type Props = {
-  onSelectProduct: (product: Product) => void;
   selectedCategory: string | null;
 };
 
-export default function FeaturedProducts({
-  onSelectProduct,
-  selectedCategory,
-}: Props) {
+export default function FeaturedProducts({ selectedCategory }: Props) {
   const filtered = products.filter((p) =>
     selectedCategory ? p.category === selectedCategory : p.featured,
   );
@@ -36,14 +31,17 @@ export default function FeaturedProducts({
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {filtered.map((product) => (
-            <ProductCard
+            <Link
               key={product.name}
-              name={product.name}
-              price={product.price}
-              image={product.image}
-              description={product.description}
-              onSelect={() => onSelectProduct(product)}
-            />
+              href={`/produits/${encodeURIComponent(product.name)}`}
+            >
+              <ProductCard
+                name={product.name}
+                price={product.price}
+                image={product.image}
+                description={product.description}
+              />
+            </Link>
           ))}
         </div>
       </div>
