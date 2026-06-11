@@ -1,18 +1,22 @@
-import { PageId } from "./index";
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 type NavbarProps = {
   mobile?: boolean;
-  setPage: (page: PageId) => void;
 };
 
-const liens: { id: PageId; label: string }[] = [
-  { id: "accueil", label: "Accueil" },
-  { id: "produits", label: "Produits" },
-  { id: "a-propos", label: "À propos" },
-  { id: "contact", label: "Contact" },
+const liens = [
+  { href: "/", label: "Accueil" },
+  { href: "/produits", label: "Produits" },
+  { href: "/a-propos", label: "À propos" },
+  { href: "/contact", label: "Contact" },
 ];
 
-export default function Navbar({ mobile = false, setPage }: NavbarProps) {
+export default function Navbar({ mobile = false }: NavbarProps) {
+  const pathname = usePathname();
+
   return (
     <nav aria-label="Navigation principale">
       <ul
@@ -23,14 +27,15 @@ export default function Navbar({ mobile = false, setPage }: NavbarProps) {
         }
       >
         {liens.map((lien) => (
-          <li key={lien.id}>
-            <button
-              type="button"
-              onClick={() => setPage(lien.id)}
-              className="transition-colors hover:text-orange-700 cursor-pointer"
+          <li key={lien.href}>
+            <Link
+              href={lien.href}
+              className={`transition-colors hover:text-orange-500 cursor-pointer ${
+                pathname === lien.href ? "text-orange-500 font-semibold" : ""
+              }`}
             >
               {lien.label}
-            </button>
+            </Link>
           </li>
         ))}
       </ul>

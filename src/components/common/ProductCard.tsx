@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 
 type ProductCardProps = {
@@ -7,7 +5,6 @@ type ProductCardProps = {
   price: number;
   image: string;
   description: string;
-  onSelect: () => void;
 };
 
 export default function ProductCard({
@@ -15,13 +12,9 @@ export default function ProductCard({
   price,
   image,
   description,
-  onSelect,
 }: ProductCardProps) {
   return (
-    <div
-      onClick={onSelect}
-      className="group bg-white rounded-md border border-slate-200 overflow-hidden hover:shadow-xl hover:shadow-slate-200/60 transition-all duration-300 cursor-pointer"
-    >
+    <div className="group bg-white rounded-md border border-slate-200 overflow-hidden hover:shadow-xl hover:shadow-slate-200/60 transition-all duration-300 cursor-pointer">
       <div className="relative h-84 bg-slate-50 overflow-hidden">
         <Image
           src={image}

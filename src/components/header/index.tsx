@@ -2,44 +2,48 @@
 
 import Logo from "@/components/common/Logo";
 import Navbar from "./Navbar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ShoppingCart } from "lucide-react";
+import Link from "next/link";
 
-export type PageId = "accueil" | "produits" | "a-propos" | "contact";
-
-type HeaderProps = {
-  setPage: (page: PageId) => void;
-  cartCount: number;
-  onCartOpen: () => void;
-};
-
-export default function Header({
-  setPage,
-  cartCount,
-  onCartOpen,
-}: HeaderProps) {
+export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
 
-  const handleNavigate = (page: PageId) => {
-    setPage(page);
-    setIsOpen(false);
-  };
+  useEffect(() => {
+    const updateCount = () => {
+      const stored = localStorage.getItem("cartItems");
+      if (stored) {
+        const items = JSON.parse(stored);
+        setCartCount(
+          items.reduce((acc: number, i: any) => acc + i.quantity, 0),
+        );
+      } else {
+        setCartCount(0);
+      }
+    };
+
+    updateCount();
+    window.addEventListener("storage", updateCount);
+    window.addEventListener("cartUpdated", updateCount);
+    return () => {
+      window.removeEventListener("storage", updateCount);
+      window.removeEventListener("cartUpdated", updateCount);
+    };
+  }, []);
 
   return (
     <header className="border-b border-slate-200 bg-white">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <div
-          onClick={() => handleNavigate("accueil")}
-          className="cursor-pointer"
-        >
+        <Link href="/">
           <Logo />
-        </div>
+        </Link>
 
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-6">
-          <Navbar setPage={handleNavigate} />
-          <button
-            onClick={onCartOpen}
+          <Navbar />
+          <Link
+            href="/panier"
             className="relative p-2 text-slate-700 hover:text-orange-500 transition-colors"
           >
             <ShoppingCart size={24} />
@@ -48,7 +52,7 @@ export default function Header({
                 {cartCount}
               </span>
             )}
-          </button>
+          </Link>
         </div>
 
         {/* Hamburger mobile */}
@@ -72,10 +76,11 @@ export default function Header({
       {/* Menu mobile */}
       {isOpen && (
         <div className="md:hidden border-t border-slate-200 px-4 py-4 flex flex-col gap-4">
-          <Navbar setPage={handleNavigate} mobile />
-          <button
-            onClick={onCartOpen}
-            className="relative flex items-center gap-2 text-slate-700 hover:text-orange-500 transition-colors font-medium"
+          <Navbar mobile />
+          <Link
+            href="/panier"
+            className="flex items-center gap-2 text-slate-700 hover:text-orange-500 transition-colors font-medium"
+            onClick={() => setIsOpen(false)}
           >
             <ShoppingCart size={20} />
             Panier
@@ -84,7 +89,7 @@ export default function Header({
                 {cartCount}
               </span>
             )}
-          </button>
+          </Link>
         </div>
       )}
     </header>

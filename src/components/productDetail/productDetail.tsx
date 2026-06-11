@@ -1,25 +1,30 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Button from "@/components/common/Button";
-import type { CartItem } from "@/app/layout";
 import products from "@/utils/products.json";
 
 type Product = (typeof products)[0];
 
-type ProductDetailProps = {
+type CartItem = {
   product: Product;
-  onClose: () => void;
-  onAddToCart: (item: CartItem) => void;
+  variantLabel: string;
+  variantImage: string;
+  price: number;
+  quantity: number;
 };
 
-export default function ProductDetail({
-  product,
-  onClose,
-  onAddToCart,
-}: ProductDetailProps) {
+type ProductDetailProps = {
+  product: Product;
+};
+
+export default function ProductDetail({ product }: ProductDetailProps) {
+  const router = useRouter();
   const [selectedVariant, setSelectedVariant] = useState(product.variants[0]);
+  const [quantity, setQuantity] = useState(1);
+  const [justAdded, setJustAdded] = useState(false);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -27,20 +32,42 @@ export default function ProductDetail({
 
   const currentPrice = selectedVariant?.price ?? product.price;
   const currentImage = (selectedVariant as any)?.image ?? product.image;
-  const [quantity, setQuantity] = useState(1);
 
   const handleAddToCart = () => {
-    onAddToCart({
-      product,
-      variantLabel: selectedVariant?.label ?? "",
-      variantImage: currentImage,
-      price: currentPrice,
-      quantity,
-    });
+    const stored = localStorage.getItem("cartItems");
+    const cartItems: CartItem[] = stored ? JSON.parse(stored) : [];
+
+    const existing = cartItems.find(
+      (i) =>
+        i.product.name === product.name &&
+        i.variantLabel === selectedVariant?.label,
+    );
+
+    if (existing) {
+      existing.quantity = Math.min(10, existing.quantity + quantity);
+    } else {
+      cartItems.push({
+        product,
+        variantLabel: selectedVariant?.label ?? "",
+        variantImage: currentImage,
+        price: currentPrice,
+        quantity,
+      });
+    }
+
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    window.dispatchEvent(new Event("cartUpdated"));
+    setJustAdded(true);
+    setTimeout(() => setJustAdded(false), 2500);
   };
 
   return (
     <section className="min-h-screen px-4 py-12 bg-white">
+      {justAdded && (
+        <div className="fixed top-20 right-4 z-50 bg-green-600 text-white px-5 py-3 rounded-lg shadow-lg text-sm font-medium">
+          ✓ Produit ajouté au panier
+        </div>
+      )}
       <div className="mx-auto max-w-5xl flex flex-col md:flex-row gap-10">
         <div className="relative w-full md:w-1/2 h-[500px] bg-slate-100 rounded-xl overflow-hidden">
           <Image
@@ -53,7 +80,7 @@ export default function ProductDetail({
 
         <div className="flex-1 flex flex-col gap-6 justify-center relative">
           <button
-            onClick={onClose}
+            onClick={() => router.back()}
             className="self-start text-sm text-slate-500 hover:text-slate-800 transition-colors cursor-pointer"
           >
             ← Retour
