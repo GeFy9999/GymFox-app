@@ -1,3 +1,5 @@
+import FormHook from "@/components/contact/FormHook";
+
 export default function Contact() {
   return (
     <section className="py-16 px-4 bg-slate-50">
@@ -32,29 +34,7 @@ export default function Contact() {
             <h2 className="text-lg font-bold text-slate-800 mb-4">
               Envoyez-nous un message
             </h2>
-            <div className="space-y-4">
-              <input
-                type="text"
-                placeholder="Votre nom"
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-slate-800 placeholder:text-slate-400"
-              />
-              <input
-                type="email"
-                placeholder="Votre courriel"
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-slate-800 placeholder:text-slate-400"
-              />
-              <textarea
-                placeholder="Votre message"
-                rows={5}
-                className="w-full rounded-md border border-slate-300 px-3 py-2 text-slate-800 placeholder:text-slate-400"
-              />
-              <button
-                type="button"
-                className="rounded-md bg-orange-600 px-6 py-2 text-sm font-medium text-white hover:bg-orange-500 transition-colors"
-              >
-                Envoyer
-              </button>
-            </div>
+            <FormHook />
           </div>
         </div>
       </div>
