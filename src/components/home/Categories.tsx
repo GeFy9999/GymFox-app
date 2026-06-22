@@ -1,17 +1,15 @@
 "use client";
 
-import { Dumbbell, Hand, Ribbon, Zap } from "lucide-react";
-
 type Props = {
   selectedCategory: string | null;
   onSelectCategory: (cat: string | null) => void;
 };
 
 const categories = [
-  { name: "Sangles", icon: Ribbon },
-  { name: "Haltères", icon: Dumbbell },
-  { name: "Gants", icon: Hand },
-  { name: "Bandes", icon: Zap },
+  { name: "Sangles" },
+  { name: "Haltères" },
+  { name: "Gants" },
+  { name: "Bandes" },
 ];
 
 export default function Categories({
@@ -33,7 +31,7 @@ export default function Categories({
           )}
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {categories.map(({ name, icon: Icon }) => (
+          {categories.map(({ name }) => (
             <div
               key={name}
               onClick={() =>
@@ -46,14 +44,8 @@ export default function Categories({
                     : "bg-slate-50 border-slate-100 hover:border-orange-300 hover:shadow-md"
                 }`}
             >
-              <Icon
-                className={`mx-auto mb-3 transition-colors ${
-                  selectedCategory === name ? "text-white" : "text-orange-500"
-                }`}
-                size={28}
-              />
               <p
-                className={`font-semibold text-sm tracking-wide ${
+                className={`font-semibold text-base tracking-wide ${
                   selectedCategory === name ? "text-white" : "text-slate-700"
                 }`}
               >

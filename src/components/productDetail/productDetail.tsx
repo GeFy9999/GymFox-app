@@ -69,7 +69,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
         </div>
       )}
       <div className="mx-auto max-w-5xl flex flex-col md:flex-row gap-10">
-        <div className="relative w-full md:w-1/2 h-[500px] bg-slate-100 rounded-xl overflow-hidden">
+        <div className="relative w-full md:w-1/2 h-[500px] bg-slate-100 rounded-md overflow-hidden">
           <Image
             src={currentImage}
             alt={product.name}

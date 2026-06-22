@@ -87,12 +87,17 @@ export default function Cart() {
                   className="bg-white rounded-xl p-4 flex gap-4 items-center shadow-sm"
                 >
                   <div className="relative w-24 h-24 bg-slate-100 rounded-lg overflow-hidden shrink-0 p-2">
-                    <Image
-                      src={item.variantImage}
-                      alt={item.product.name}
-                      fill
-                      className="object-cover rounded-md"
-                    />
+                    <Link
+                      key={item.product.name}
+                      href={`/produits/${encodeURIComponent(item.product.name)}`}
+                    >
+                      <Image
+                        src={item.variantImage}
+                        alt={item.product.name}
+                        fill
+                        className="object-cover rounded-md"
+                      />
+                    </Link>
                   </div>
                   <div className="flex-1">
                     <p className="font-semibold text-slate-800">
