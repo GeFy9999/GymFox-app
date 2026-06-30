@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import emailjs from "@emailjs/browser";
 
@@ -10,6 +11,9 @@ type DonneesFormulaire = {
 };
 
 export default function FormHook() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -25,6 +29,8 @@ export default function FormHook() {
   });
 
   const onSubmit = (donnees: DonneesFormulaire) => {
+    setIsSubmitting(true);
+
     const templateParams = {
       name: donnees.nom,
       email: donnees.courriel,
@@ -41,13 +47,28 @@ export default function FormHook() {
       .then(
         () => {
           console.log("E-mail envoyé avec succès !");
+          setIsSuccess(true);
           reset();
         },
         (error) => {
           console.error("Erreur lors de l'envoi de l'e-mail :", error);
+          setIsSubmitting(false);
         },
       );
   };
+
+  if (isSuccess) {
+    return (
+      <div className="text-center py-8">
+        <p className="text-lg font-semibold text-slate-800 mb-2">
+          Merci de nous avoir contactés !
+        </p>
+        <p className="text-sm text-slate-600">
+          Nous vous répondrons dans les plus brefs délais.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -102,9 +123,10 @@ export default function FormHook() {
 
       <button
         type="submit"
-        className="rounded-md bg-orange-600 px-6 py-2 text-sm font-medium text-white hover:bg-orange-500 transition-colors"
+        disabled={isSubmitting}
+        className="rounded-md bg-orange-600 px-6 py-2 text-sm font-medium text-white hover:bg-orange-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        Envoyer
+        {isSubmitting ? "Envoi en cours..." : "Envoyer"}
       </button>
     </form>
   );
