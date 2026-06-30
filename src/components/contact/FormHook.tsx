@@ -1,6 +1,7 @@
 "use client";
 
 import { useForm } from "react-hook-form";
+import emailjs from "@emailjs/browser";
 
 type DonneesFormulaire = {
   nom: string;
@@ -24,8 +25,28 @@ export default function FormHook() {
   });
 
   const onSubmit = (donnees: DonneesFormulaire) => {
-    console.log("Données envoyées :", donnees);
-    reset();
+    const templateParams = {
+      name: donnees.nom,
+      email: donnees.courriel,
+      message: donnees.message,
+    };
+
+    emailjs
+      .send(
+        process.env.NEXT_PUBLIC_EJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EJS_TEMPLATE_ID!,
+        templateParams,
+        process.env.NEXT_PUBLIC_EJS_PUBLIC_KEY!,
+      )
+      .then(
+        () => {
+          console.log("E-mail envoyé avec succès !");
+          reset();
+        },
+        (error) => {
+          console.error("Erreur lors de l'envoi de l'e-mail :", error);
+        },
+      );
   };
 
   return (
