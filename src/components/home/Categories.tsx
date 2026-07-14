@@ -1,5 +1,8 @@
 "use client";
 
+import "@/i18next";
+import { useTranslation } from "react-i18next";
+
 type Props = {
   selectedCategory: string | null;
   onSelectCategory: (cat: string | null) => void;
@@ -16,17 +19,21 @@ export default function Categories({
   selectedCategory,
   onSelectCategory,
 }: Props) {
+  const { t } = useTranslation("home");
+
   return (
     <section className="py-14 px-6 bg-white border-b border-slate-100">
       <div className="mx-auto max-w-6xl">
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-2xl font-bold text-slate-900">Nos catégories</h2>
+          <h2 className="text-2xl font-bold text-slate-900">
+            {t("categories_title")}
+          </h2>
           {selectedCategory && (
             <button
               onClick={() => onSelectCategory(null)}
               className="text-sm text-orange-500 hover:text-orange-700 font-medium transition-colors"
             >
-              Tout afficher ×
+              {t("categories_clear")}
             </button>
           )}
         </div>

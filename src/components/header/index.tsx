@@ -1,5 +1,7 @@
 "use client";
 
+import "@/i18next";
+import { useTranslation } from "react-i18next";
 import Logo from "@/components/common/Logo";
 import Navbar from "./Navbar";
 import { useState, useEffect } from "react";
@@ -9,6 +11,11 @@ import Link from "next/link";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
+  const { t, i18n } = useTranslation("header");
+
+  const toggleLanguage = () => {
+    i18n.changeLanguage(i18n.language === "fr" ? "en" : "fr");
+  };
 
   useEffect(() => {
     const updateCount = () => {
@@ -42,6 +49,12 @@ export default function Header() {
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-6">
           <Navbar />
+          <button
+            onClick={toggleLanguage}
+            className="text-sm font-semibold text-slate-600 hover:text-orange-500 transition-colors border border-slate-200 px-3 py-1 rounded-md"
+          >
+            {i18n.language === "fr" ? "EN" : "FR"}
+          </button>
           <Link
             href="/panier"
             className="relative p-2 text-slate-700 hover:text-orange-500 transition-colors"
@@ -77,13 +90,19 @@ export default function Header() {
       {isOpen && (
         <div className="md:hidden border-t border-slate-200 px-4 py-4 flex flex-col gap-4">
           <Navbar mobile />
+          <button
+            onClick={toggleLanguage}
+            className="text-sm font-semibold text-slate-600 hover:text-orange-500 transition-colors border border-slate-200 px-3 py-1 rounded-md w-fit"
+          >
+            {i18n.language === "fr" ? "EN" : "FR"}
+          </button>
           <Link
             href="/panier"
             className="flex items-center gap-2 text-slate-700 hover:text-orange-500 transition-colors font-medium"
             onClick={() => setIsOpen(false)}
           >
             <ShoppingCart size={20} />
-            Panier
+            {t("cart")}
             {cartCount > 0 && (
               <span className="bg-orange-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
                 {cartCount}

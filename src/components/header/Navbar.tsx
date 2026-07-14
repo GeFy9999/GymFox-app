@@ -1,5 +1,7 @@
 "use client";
 
+import "@/i18next";
+import { useTranslation } from "react-i18next";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -8,14 +10,15 @@ type NavbarProps = {
 };
 
 const liens = [
-  { href: "/", label: "Accueil" },
-  { href: "/produits", label: "Produits" },
-  { href: "/a-propos", label: "À propos" },
-  { href: "/contact", label: "Contact" },
+  { href: "/", key: "home" },
+  { href: "/produits", key: "products" },
+  { href: "/a-propos", key: "about" },
+  { href: "/contact", key: "contact" },
 ];
 
 export default function Navbar({ mobile = false }: NavbarProps) {
   const pathname = usePathname();
+  const { t } = useTranslation("header");
 
   return (
     <nav aria-label="Navigation principale">
@@ -34,7 +37,7 @@ export default function Navbar({ mobile = false }: NavbarProps) {
                 pathname === lien.href ? "text-orange-500 font-semibold" : ""
               }`}
             >
-              {lien.label}
+              {t(lien.key)}
             </Link>
           </li>
         ))}
