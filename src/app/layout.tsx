@@ -16,8 +16,18 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "GymFox — Accessoires de sport premium",
+  title: {
+    default: "GymFox",
+    template: "%s | GymFox",
+  },
   description: "Accessoires de gym et musculation de qualité premium.",
+  openGraph: {
+    title: "GymFox",
+    description: "Accessoires de gym et musculation de qualité premium.",
+    images: ["/gymfoxLogo.webp"],
+    locale: "fr_CA",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

@@ -1,0 +1,6 @@
+# Autoriser l'exploration de tout le site
+User-agent: *
+Allow: /
+ 
+# Indiquer l'emplacement du sitemap
+Sitemap: http://localhost:3000/sitemap.xml
