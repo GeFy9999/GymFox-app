@@ -18,7 +18,7 @@ export default function Button({
   return (
     <button
       onClick={onClick}
-      className={`font-medium px-6 py-3 rounded-md transition-colors ${styles[variant]}`}
+      className={`font-medium px-6 py-3.5 min-h-[48px] rounded-md transition-colors ${styles[variant]}`}
     >
       {children}
     </button>

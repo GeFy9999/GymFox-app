@@ -36,6 +36,7 @@ export default function Navbar({ mobile = false }: NavbarProps) {
         {liens.map((lien) => (
           <li key={lien.href}>
             <Link
+              suppressHydrationWarning
               href={lien.href}
               className={`transition-colors hover:text-orange-500 cursor-pointer ${
                 pathname === lien.href ? "text-orange-500 font-semibold" : ""
