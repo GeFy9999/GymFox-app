@@ -5,6 +5,7 @@ type ProductCardProps = {
   price: number;
   image: string;
   description: string;
+  priority?: boolean;
 };
 
 export default function ProductCard({
@@ -12,6 +13,7 @@ export default function ProductCard({
   price,
   image,
   description,
+  priority = false,
 }: ProductCardProps) {
   return (
     <div className="group bg-white rounded-md border border-slate-200 overflow-hidden hover:shadow-xl hover:shadow-slate-200/60 transition-all duration-300 cursor-pointer">
@@ -21,6 +23,7 @@ export default function ProductCard({
           alt={name}
           fill
           sizes="(max-width: 768px) 100vw, 33vw"
+          priority={priority}
           className="object-cover group-hover:scale-105 transition-transform duration-500"
         />
       </div>

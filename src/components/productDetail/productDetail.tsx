@@ -74,6 +74,8 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             src={currentImage}
             alt={product.name}
             fill
+            priority
+            sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover object-center"
           />
         </div>

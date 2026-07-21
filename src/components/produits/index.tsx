@@ -10,7 +10,7 @@ export default function Produits() {
           Tous nos produits
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {products.map((product) => (
+          {products.map((product, index) => (
             <Link
               key={product.name}
               href={`/produits/${encodeURIComponent(product.name)}`}
@@ -20,6 +20,7 @@ export default function Produits() {
                 price={product.price}
                 image={product.image}
                 description={product.description}
+                priority={index < 3}
               />
             </Link>
           ))}

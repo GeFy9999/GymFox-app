@@ -1,5 +1,6 @@
 import products from "@/utils/products.json";
 import ProductDetail from "@/components/productDetail/productDetail";
+import Link from "next/link";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -15,5 +16,12 @@ export default async function ProductPage({ params }: Props) {
     );
   }
 
-  return <ProductDetail product={product} />;
+  const initialImage = (product.variants[0] as any)?.image ?? product.image;
+
+  return (
+    <>
+      <link rel="preload" as="image" href={initialImage} />
+      <ProductDetail product={product} />
+    </>
+  );
 }

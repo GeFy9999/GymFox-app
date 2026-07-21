@@ -30,7 +30,7 @@ export default function FeaturedProducts({ selectedCategory }: Props) {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {filtered.map((product) => (
+          {filtered.map((product, index) => (
             <Link
               key={product.name}
               href={`/produits/${encodeURIComponent(product.name)}`}
@@ -40,6 +40,7 @@ export default function FeaturedProducts({ selectedCategory }: Props) {
                 price={product.price}
                 image={product.image}
                 description={product.description}
+                priority={index < 3}
               />
             </Link>
           ))}

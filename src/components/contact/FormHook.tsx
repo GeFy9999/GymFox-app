@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import emailjs from "@emailjs/browser";
 
 type DonneesFormulaire = {
   nom: string;
@@ -28,8 +27,9 @@ export default function FormHook() {
     },
   });
 
-  const onSubmit = (donnees: DonneesFormulaire) => {
+  const onSubmit = async (donnees: DonneesFormulaire) => {
     setIsSubmitting(true);
+    const emailjs = (await import("@emailjs/browser")).default;
 
     const templateParams = {
       name: donnees.nom,
