@@ -8,6 +8,7 @@ import Navbar from "./Navbar";
 import { useState, useEffect } from "react";
 import { ShoppingCart, Moon, Sun } from "lucide-react";
 import Link from "next/link";
+import InstallPrompt from "../InstallPrompt";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -160,6 +161,7 @@ export default function Header() {
           </div>
         </div>
       )}
+      <InstallPrompt />
     </header>
   );
 }
