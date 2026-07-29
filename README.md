@@ -1,36 +1,117 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GymFox
+
+Online store for gym accessories — a frontend-only school project built as part of the Computer Programming program at La Cité collégiale.
+
+> **Note:** This project is strictly frontend (no backend). Product data is stored locally in JSON and the cart runs entirely client-side.
+
+![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss)
+
+---
+
+## Overview
+
+GymFox simulates an online store specializing in gym accessories (lifting straps, dumbbells, grip gloves, resistance bands). The site focuses on a polished user experience with PWA installation, category filtering, product variants, and a contact form.
+
+---
+
+## Features
+
+- **Product catalog** — 4 products with variants (color, weight), category filtering, and dynamic detail pages (`/produits/[slug]`)
+- **Shopping cart** — Client-side add, remove, and item management
+- **Bilingual (FR/EN)** — French and English via `react-i18next` with separate translation files by namespace (`common`, `header`, `home`) — currently applied to the navbar and hero section
+- **Dark / light theme** — Toggle via a React Context `ThemeProvider` — currently applied to the navbar and hero section
+- **PWA** — Manifest, 512×512 icons, custom install banner with a 24-hour cooldown after dismissal
+- **Contact form** — Validation with `react-hook-form`, submission via EmailJS
+- **Performance optimization** — Compressed WebP images, lazy loading, `next/image` with `priority` on the hero
+
+---
+
+## Tech Stack
+
+| Category     | Technology                         |
+| ------------ | ---------------------------------- |
+| Framework    | Next.js 16 (App Router)            |
+| Language     | TypeScript 5                       |
+| UI           | Tailwind CSS 4                     |
+| Icons        | Lucide React, React Icons          |
+| Forms        | React Hook Form + EmailJS          |
+| i18n         | i18next + react-i18next            |
+| Optimization | Sharp (images), WebP, lazy loading |
+
+---
+
+## Project Structure
+
+```
+src/
+├── app/                         # Routes (App Router)
+│   ├── page.tsx                 # Home
+│   ├── produits/
+│   │   ├── page.tsx             # Product listing
+│   │   └── [slug]/page.tsx      # Product detail (dynamic)
+│   ├── panier/page.tsx          # Cart
+│   ├── a-propos/page.tsx        # About
+│   └── contact/page.tsx         # Contact
+├── components/
+│   ├── home/                    # Hero, Categories, ProductList
+│   ├── header/                  # Header, Navbar
+│   ├── footer/                  # Footer
+│   ├── common/                  # Button, Logo, ProductCard
+│   ├── productDetail/           # Product detail page
+│   ├── cart/                    # Cart
+│   ├── contact/                 # Form (React Hook Form)
+│   ├── a-propos/                # About section
+│   ├── produits/                # Catalog page
+│   └── InstallPrompt.tsx        # PWA install banner
+├── providers/
+│   ├── ThemeProvider.tsx         # Dark/light theme context
+│   └── InstalledDateProvider.tsx # PWA banner cooldown
+├── locales/
+│   ├── fr/                      # French translations
+│   └── en/                      # English translations
+└── utils/
+    ├── products.json             # Product data (mock)
+    ├── cartItems.json            # Cart structure
+    └── navItems.json             # Navigation links
+```
+
+---
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+git clone https://github.com/GeFy9999/GymFox-app.git
+cd GymFox-app
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Static Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Academic Context
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project was built as a frontend exercise for a web development course. The goal was to create a complete e-commerce interface without a backend, putting into practice:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Component-based architecture with React and Next.js (App Router)
+- Dynamic routing with `generateStaticParams`
+- State management via React Context (theme, cart)
+- Client-side internationalization
+- Performance best practices (WebP, lazy loading, Lighthouse)
+- PWA configuration (manifest, icons, install prompt)
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Author
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built by **Zach** — Computer Programming student at La Cité collégiale.
