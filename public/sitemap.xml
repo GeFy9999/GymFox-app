@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>http://localhost:3000/</loc>
+<loc>https://gym-fox-app.vercel.app/</loc>
 <lastmod>2026-07-13</lastmod>
 <changefreq>weekly</changefreq>
 <priority>0.9</priority>
 </url>
 <url>
-<loc>http://localhost:3000/product</loc>
+<loc>https://gym-fox-app.vercel.app/product</loc>
 <lastmod>2026-07-13</lastmod>
 <changefreq>weekly</changefreq>
 <priority>1.0</priority>
 </url>
 <url>
-<loc>http://localhost:3000/contact</loc>
+<loc>https://gym-fox-app.vercel.app/contact</loc>
 <lastmod>2026-07-13</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.7</priority>
 </url>
 <url>
-<loc>http://localhost:3000/a-propos</loc>
+<loc>https://gym-fox-app.vercel.app/a-propos</loc>
 <lastmod>2026-07-13</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.4</priority>
 </url>
 <url>
-<loc>http://localhost:3000/cart</loc>
+<loc>https://gym-fox-app.vercel.app/cart</loc>
 <lastmod>2026-07-13</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.3</priority>
